@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عزوة - نظام قطري ذكي لرعاية كبار السن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --qatar-maroon: #8E1538;
+            --qatar-dark: #6B0F2A;
+            --qatar-gold: #F4C23E;
+            --warm-cream: #FFF8F0;
+            --soft-sage: #A8C5A3;
+            --text-primary: #2C3E3C;
+            --card-shadow: 0 8px 32px rgba(142, 21, 56, 0.15);
+        }
+
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--warm-cream) 0%, #FFE8D6 100%);
+            direction: rtl;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(142, 21, 56, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(244, 196, 62, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(-30px, -30px) scale(1.1);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--qatar-maroon) 0%, var(--qatar-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(142, 21, 56, 0.3);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .qatar-flag {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 3px;
+        }
+
+        .header .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.95;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .en-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--qatar-maroon), var(--qatar-gold), white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+            border: 3px solid var(--qatar-maroon);
+            animation: slideRight 0.7s ease-out 0.4s both;
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar h3 {
+            color: var(--qatar-maroon);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-bottom: 3px solid var(--qatar-gold);
+            padding-bottom: 0.8rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            margin: 0.8rem 0;
+            background: linear-gradient(135deg, var(--warm-cream), #FFF);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--qatar-maroon);
+            color: white;
+            transform: translateX(-5px);
+            border-color: var(--qatar-gold);
+            box-shadow: 0 6px 20px rgba(142, 21, 56, 0.3);
+        }
+
+        .nav-item .icon {
+            font-size: 1.8rem;
+            min-width: 2rem;
+        }
+
+        .content {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            border: 3px solid var(--qatar-gold);
+            animation: slideLeft 0.7s ease-out 0.5s both;
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .content h2 {
+            color: var(--qatar-maroon);
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .content h2::before {
+            content: '🇶🇦';
+            font-size: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.5s ease-out both;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.6s; }
+        .form-group:nth-child(2) { animation-delay: 0.7s; }
+        .form-group:nth-child(3) { animation-delay: 0.8s; }
+        .form-group:nth-child(4) { animation-delay: 0.9s; }
+        .form-group:nth-child(5) { animation-delay: 1s; }
+        .form-group:nth-child(6) { animation-delay: 1.1s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--qatar-maroon);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        label::before {
+            content: '●';
+            color: var(--qatar-gold);
+            font-size: 1.2rem;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 1.3rem 1.5rem;
+            font-size: 1.3rem;
+            border: 3px solid var(--qatar-maroon);
+            border-radius: 16px;
+            background: var(--warm-cream);
+            color: var(--text-primary);
+            font-family: 'Tajawal', Arial, sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--qatar-gold);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(142, 21, 56, 0.1);
+            transform: scale(1.02);
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238E1538' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 1rem center;
+            background-size: 1.5rem;
+            padding-left: 3.5rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.8rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--qatar-maroon) 0%, var(--qatar-dark) 100%);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 24px rgba(142, 21, 56, 0.3);
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease-out 1.2s both;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(142, 21, 56, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Info cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, var(--qatar-maroon) 0%, var(--qatar-dark) 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 16px rgba(142, 21, 56, 0.3);
+            animation: scaleIn 0.5s ease-out both;
+            border: 2px solid var(--qatar-gold);
+        }
+
+        .info-card:nth-child(1) { animation-delay: 0.3s; }
+        .info-card:nth-child(2) { animation-delay: 0.4s; }
+        .info-card:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .info-card .icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .content h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .content {
+                padding: 2rem 1.5rem;
+            }
+
+            label {
+                font-size: 1.2rem;
+            }
+
+            input[type="number"],
+            select {
+                font-size: 1.1rem;
+                padding: 1.1rem;
+            }
+
+            .submit-btn {
+                font-size: 1.4rem;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Accessibility improvements */
+        *:focus-visible {
+            outline: 3px solid var(--qatar-gold);
+            outline-offset: 3px;
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="qatar-flag">🇶🇦</div>
+        <h1>عزوتي - Ozwati</h1>
+        <p class="subtitle">نظام قطري ذكي لرعاية كبار السن</p>
+        <p class="en-subtitle">Qatar Smart Elderly Care System</p>
+    </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>القائمة</h3>
+            <a href="#" class="nav-item">
+                <span class="icon">📋</span>
+                <span>إدخال البيانات</span>
+            </a>
+            <a href="/stats" class="nav-item">
+                <span class="icon">📊</span>
+                <span>الإحصائيات</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>الإعدادات</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">❓</span>
+                <span>المساعدة</span>
+            </a>
+        </aside>
+
+        <main class="content">
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="icon">💚</div>
+                    <h4>رعاية صحية</h4>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🌟</div>
+                    <h4>حياة نشطة</h4>
+                </div>
+                <div class="info-card">
+                    <div class="icon">😊</div>
+                    <h4>سعادة دائمة</h4>
+                </div>
+            </div>
+
+            <h2>معلوماتك الشخصية</h2>
+            
+            <form action="/predict" method="post">
+                <div class="form-group">
+                    <label for="age">العمر</label>
+                    <input type="number" id="age" name="age" min="50" max="120" required placeholder="أدخل عمرك">
+                </div>
+
+                <div class="form-group">
+                    <label for="health">الحالة الصحية</label>
+                    <select id="health" name="health" required>
+                        <option value="">اختر حالتك الصحية</option>
+                        <option value="1">ضعيفة - أحتاج للرعاية المستمرة</option>
+                        <option value="2">متوسطة - أستطيع القيام بالأنشطة البسيطة</option>
+                        <option value="3">جيدة - أتمتع بصحة ممتازة</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobility">القدرة على الحركة</label>
+                    <select id="mobility" name="mobility" required>
+                        <option value="">اختر قدرتك على الحركة</option>
+                        <option value="1">ضعيفة - أستخدم كرسي متحرك أو مساعدات</option>
+                        <option value="2">متوسطة - أستطيع المشي بمساعدة</option>
+                        <option value="3">جيدة - أستطيع الحركة بحرية</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mood">الحالة المزاجية</label>
+                    <select id="mood" name="mood" required>
+                        <option value="">كيف تشعر اليوم؟</option>
+                        <option value="1">سيئة - أشعر بالحزن أو القلق</option>
+                        <option value="2">متوسطة - أشعر بشكل عادي</option>
+                        <option value="3">جيدة - أشعر بالسعادة والنشاط</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="lonely">مدى الشعور بالوحدة</label>
+                    <select id="lonely" name="lonely" required>
+                        <option value="">كيف تشعر اجتماعياً؟</option>
+                        <option value="1">منخفض - أقضي وقتاً مع الآخرين بانتظام</option>
+                        <option value="2">متوسط - أشعر بالوحدة أحياناً</option>
+                        <option value="3">مرتفع - أشعر بالوحدة بشكل متكرر</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="interest">نوع الأنشطة المفضلة</label>
+                    <select id="interest" name="interest" required>
+                        <option value="">ما الذي تفضله؟</option>
+                        <option value="0">أنشطة اجتماعية - التواصل مع الآخرين</option>
+                        <option value="1">أنشطة ذهنية - القراءة والألعاب الفكرية</option>
+                        <option value="2">أنشطة بدنية - الحركة والرياضة الخفيفة</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>🎯 احصل على التوصية المناسبة</span>
+                </button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        // Form validation feedback
+        const form = document.querySelector('form');
+        const inputs = form.querySelectorAll('input, select');
+
+        inputs.forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.value) {
+                    this.style.borderColor = 'var(--qatar-gold)';
+                    this.style.background = 'white';
+                }
+            });
+        });
+
+        // Enhance submit button interaction
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.addEventListener('click', function(e) {
+            const allFilled = Array.from(inputs).every(input => input.value);
+            if (!allFilled) {
+                e.preventDefault();
+                alert('الرجاء ملء جميع الحقول للحصول على التوصية المناسبة');
+            }
+        });
+    </script>
+</body>
+</html>

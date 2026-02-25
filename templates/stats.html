@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عزوة - إحصائيات النظام</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --qatar-maroon: #8E1538;
+            --qatar-dark: #6B0F2A;
+            --qatar-gold: #F4C23E;
+            --warm-cream: #FFF8F0;
+            --soft-sage: #A8C5A3;
+            --sky-blue: #5DADE2;
+            --text-primary: #2C3E3C;
+            --card-shadow: 0 8px 32px rgba(142, 21, 56, 0.15);
+        }
+
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--warm-cream) 0%, #FFE8D6 100%);
+            direction: rtl;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -30%;
+            right: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(142, 21, 56, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -25%;
+            left: -10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(244, 196, 62, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .qatar-flag {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--qatar-maroon);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .app-name {
+            font-size: 1.5rem;
+            color: var(--qatar-maroon);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+            transition: all 0.4s ease;
+            animation: scaleIn 0.6s ease-out both;
+        }
+
+        .stat-card:nth-child(1) {
+            animation-delay: 0.2s;
+            border-color: var(--qatar-maroon);
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.4s;
+            border-color: var(--qatar-gold);
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--qatar-maroon), var(--qatar-gold), white);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(142, 21, 56, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .stat-card:nth-child(1) .stat-icon { animation-delay: 0s; }
+        .stat-card:nth-child(2) .stat-icon { animation-delay: 0.3s; }
+
+        .stat-label {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--qatar-maroon), var(--qatar-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .stat-card:nth-child(2) .stat-value {
+            font-size: 2.8rem;
+        }
+
+        .stat-description {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        .info-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            border: 3px solid var(--qatar-gold);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-section h3 {
+            font-size: 2rem;
+            color: var(--qatar-maroon);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            background: var(--warm-cream);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border-right: 5px solid var(--qatar-maroon);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(-5px);
+            background: linear-gradient(135deg, var(--warm-cream), #FFF);
+            box-shadow: 0 6px 20px rgba(142, 21, 56, 0.15);
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--qatar-maroon);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item span {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            opacity: 0.7;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.5rem 2.5rem;
+            background: linear-gradient(135deg, var(--qatar-maroon) 0%, var(--qatar-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 18px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 6px 24px rgba(142, 21, 56, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+            margin: 0 auto;
+            display: inline-flex;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(142, 21, 56, 0.4);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover::before {
+            transform: translateX(-5px);
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--warm-cream);
+            border-radius: 10px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--qatar-maroon), var(--qatar-gold));
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            animation: fillProgress 2s ease-out forwards;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.2rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat-value { font-size: 2.8rem; }
+            .info-section { padding: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem; }
+            .qatar-flag { font-size: 3rem; }
+            .header h1 { font-size: 1.8rem; }
+            .stat-icon { font-size: 3.5rem; }
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--qatar-gold);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="qatar-flag">🇶🇦</div>
+            <div class="app-name">عزوة - Ozwa</div>
+            <h1>📊 إحصائيات النظام</h1>
+            <p>Ozwa System Statistics</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-label">عدد الحالات المسجلة</div>
+                <div class="stat-value">{{ total }}</div>
+                <div class="stat-description">إجمالي عدد المستخدمين</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-label">النشاط الأكثر اقتراحاً</div>
+                <div class="stat-value">{{ most_common }}</div>
+                <div class="stat-description">الأكثر شيوعاً بين المستخدمين</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>📈 معلومات إضافية</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>🎯 دقة التوصيات</strong>
+                    <span>نظام ذكي يعتمد على الذكاء الاصطناعي</span>
+                </div>
+                <div class="info-item">
+                    <strong>💚 تحسين الصحة</strong>
+                    <span>أنشطة مصممة لتحسين جودة الحياة</span>
+                </div>
+                <div class="info-item">
+                    <strong>🤝 دعم اجتماعي</strong>
+                    <span>تشجيع التفاعل الاجتماعي الإيجابي</span>
+                </div>
+                <div class="info-item">
+                    <strong>🧠 تنشيط ذهني</strong>
+                    <span>أنشطة لتعزيز القدرات الإدراكية</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="/" class="back-button">
+                <span>الرجوع للوحة التحكم</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Animate numbers counting up
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * (end - start) + start);
+                element.textContent = currentValue;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        window.addEventListener('load', () => {
+            const totalElement = document.querySelector('.stat-card:nth-child(1) .stat-value');
+            const totalValue = parseInt(totalElement.textContent);
+            
+            if (!isNaN(totalValue)) {
+                totalElement.textContent = '0';
+                animateValue(totalElement, 0, totalValue, 2000);
+            }
+        });
+    </script>
+</body> 
+</html>

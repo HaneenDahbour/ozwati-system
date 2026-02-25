@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عزوة - النشاط المقترح</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --qatar-maroon: #8E1538;
+            --qatar-dark: #6B0F2A;
+            --qatar-gold: #F4C23E;
+            --warm-cream: #FFF8F0;
+            --soft-sage: #A8C5A3;
+            --text-primary: #2C3E3C;
+            --card-shadow: 0 8px 32px rgba(142, 21, 56, 0.15);
+        }
+
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--warm-cream) 0%, #FFE8D6 100%);
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -30%;
+            right: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(142, 21, 56, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -25%;
+            left: -10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(244, 196, 62, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.1); }
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            padding: 3.5rem;
+            border-radius: 28px;
+            box-shadow: 0 12px 48px rgba(142, 21, 56, 0.2);
+            border: 4px solid var(--qatar-maroon);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--qatar-maroon), var(--qatar-gold), white);
+        }
+
+        /* Qatar Branding */
+        .qatar-branding {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .qatar-flag {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .app-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--qatar-maroon);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: bounceIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .card h2 {
+            color: var(--qatar-maroon);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            animation: slideDown 0.6s ease-out 0.5s both;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .activity-result {
+            background: linear-gradient(135deg, var(--qatar-maroon) 0%, var(--qatar-dark) 100%);
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 800;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 24px rgba(142, 21, 56, 0.3);
+            animation: scaleIn 0.6s ease-out 0.7s both;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--qatar-gold);
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Video Section */
+        .activity-video-container {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--warm-cream), #FFE8D6);
+            border-radius: 20px;
+            border-right: 6px solid var(--qatar-maroon);
+            animation: slideRight 0.6s ease-out 0.9s both;
+        }
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .activity-video-container h3 {
+            color: var(--qatar-maroon);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .activity-video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(142, 21, 56, 0.2);
+            border: 3px solid var(--qatar-gold);
+        }
+
+        /* Suggestions */
+        .explanation {
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: var(--warm-cream);
+            border-radius: 20px;
+            border-right: 6px solid var(--qatar-gold);
+        }
+
+        .explanation strong {
+            display: block;
+            font-size: 1.6rem;
+            color: var(--qatar-maroon);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .suggestion-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .suggestion-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 2px solid #E0E0E0;
+            transition: all 0.3s ease;
+            animation: fadeInLeft 0.5s ease-out both;
+        }
+
+        .suggestion-card:nth-child(1) { animation-delay: 1s; }
+        .suggestion-card:nth-child(2) { animation-delay: 1.1s; }
+        .suggestion-card:nth-child(3) { animation-delay: 1.2s; }
+        .suggestion-card:nth-child(4) { animation-delay: 1.3s; }
+        .suggestion-card:nth-child(5) { animation-delay: 1.4s; }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .suggestion-card:hover {
+            border-color: var(--qatar-maroon);
+            box-shadow: 0 6px 20px rgba(142, 21, 56, 0.15);
+        }
+
+        .suggestion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .suggestion-icon {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .icon-emoji {
+            font-size: 2.5rem;
+        }
+
+        .suggestion-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Video Toggle Button */
+        .video-toggle-btn {
+            background: linear-gradient(135deg, var(--qatar-maroon), var(--qatar-dark));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal', Arial, sans-serif;
+        }
+
+        .video-toggle-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(142, 21, 56, 0.3);
+        }
+
+        /* External Link Button (for activities without videos) */
+        .external-link-btn {
+            background: linear-gradient(135deg, var(--qatar-gold), #E6B83A);
+            color: var(--text-primary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .external-link-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(244, 196, 62, 0.3);
+        }
+
+        .video-container {
+            margin-top: 1rem;
+        }
+
+        .suggestion-video {
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            border: 2px solid var(--qatar-gold);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.5rem 2.5rem;
+            margin-top: 2.5rem;
+            background: linear-gradient(135deg, var(--qatar-maroon) 0%, var(--qatar-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 18px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 6px 24px rgba(142, 21, 56, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out 1.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(142, 21, 56, 0.4);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover::before {
+            transform: translateX(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card { padding: 2.5rem 2rem; }
+            .success-icon { font-size: 4rem; }
+            .card h2 { font-size: 1.6rem; }
+            .activity-result { font-size: 2rem; padding: 1.5rem; }
+            .suggestion-button { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem; }
+            .card { padding: 2rem 1.5rem; }
+            .qatar-flag { font-size: 3rem; }
+            .app-logo { font-size: 1.5rem; }
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--qatar-gold);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Qatar Branding -->
+            <div class="qatar-branding">
+                <div class="qatar-flag">🇶🇦</div>
+                <div class="app-logo">عزوتي - Ozwati</div>
+            </div>
+            
+            <div class="success-icon">🎉</div>
+            <h2>تم اختيار النشاط المناسب لك</h2>
+            
+            <div class="activity-result">
+                {{ activity }}
+            </div>
+
+            <!-- Main Activity Video -->
+            {% if activity_video_url %}
+<div class="activity-video-container">
+    
+</div>
+{% endif %}
+
+            <!-- Suggestions with Videos -->
+            <div class="explanation">
+                <strong>🎯 اختر النشاط الذي تريد البدء به:</strong>
+                <div class="suggestion-grid">
+                    {% for item in suggestions %}
+                    <div class="suggestion-card">
+                        <!-- Activity Title -->
+                        <div class="suggestion-header">
+                            <div class="suggestion-icon">
+                                <span class="icon-emoji">{{ item.icon }}</span>
+                                <span class="suggestion-title">{{ item.name }}</span>
+                            </div>
+                            {% if item.video_url %}
+                            <button class="video-toggle-btn" onclick="toggleVideo(this)">
+                                🎬 شاهد الآن
+                            </button>
+                            {% else %}
+                            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" class="external-link-btn">
+                                افتح النشاط ←
+                            </a>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Embedded Video (if exists) -->
+                        {% if item.video_url %}
+                        <div class="video-container" style="display: none;">
+                            <iframe class="suggestion-video" 
+                                    src="{{ item.video_url }}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <a href="/" class="back-button">
+                <span>الرجوع للصفحة الرئيسية</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Toggle video visibility
+        function toggleVideo(button) {
+            const videoContainer = button.parentElement.nextElementSibling;
+            
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                button.textContent = '🔽 إخفاء الفيديو';
+                
+                // Scroll to video smoothly
+                setTimeout(() => {
+                    videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            } else {
+                videoContainer.style.display = 'none';
+                button.textContent = '🎬 شاهد الآن';
+            }
+        }
+
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#8E1538', '#F4C23E', '#FFFFFF', '#A8C5A3'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.opacity = '0.8';
+                    document.body.appendChild(confetti);
+
+                    const duration = Math.random() * 3 + 2;
+                    const xMovement = (Math.random() - 0.5) * 200;
+                    
+                    confetti.animate([
+                        { transform: 'translate(0, 0) rotate(0deg)', opacity: 0.8 },
+                        { transform: `translate(${xMovement}px, ${window.innerHeight + 10}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: duration * 1000,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    }).onfinish = () => confetti.remove();
+                }, i * 30);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 500);
+        });
+    </script>
+</body>
+</html>
